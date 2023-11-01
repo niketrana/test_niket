@@ -1,16 +1,10 @@
 pipeline {
-    agent none
+    agent any
     stages {
-        //DEV
-        stage('stage1') {
+        stage('Hello') {
             steps {
-                echo stage1
+                echo 'Hello World'
             }
         }
-        stage('stage2') {
-            steps {
-                echo stage2
-            }
-        }
-    } // Stages
-} // Pipeline
+    }
+}
