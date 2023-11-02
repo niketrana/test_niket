@@ -1,14 +1,12 @@
 pipeline {
-    agent any
+    agent {
+    environment {
+        Go111MODULE='on'
+    }
     stages {
-        stage('stage1') {
+        stage('Test') {
             steps {
-                echo 'Hello World A1'
-            }
-        }
-        stage('stage2') {
-            steps {
-                echo 'Hello World A2'
+                git 'https://github.com/niketrana/test_niket.git'
             }
         }
     }
