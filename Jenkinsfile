@@ -13,7 +13,7 @@ pipeline {
         }    
         stage('Build Image') {
             steps {
-                 docker build -t niket-image:v1.0 Dockerfile
+                 sh "docker build -t niket-image:v1.0 Dockerfile"
                    }            
         }
     }
