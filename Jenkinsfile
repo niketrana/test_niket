@@ -1,5 +1,5 @@
 pipeline {
-    agent {
+    agent any
     environment {
         Go111MODULE='on'
     }
@@ -10,5 +10,3 @@ pipeline {
             }
         }
     }
-   }
-}
