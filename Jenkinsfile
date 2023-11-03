@@ -1,10 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('GitClone') {
+        stage('hw') {
             steps {
-               git "https://github.com/niketrana/test_niket2.git"
+               echo "hw"
             }            
-        }
+        }        
     }
 }    // test
