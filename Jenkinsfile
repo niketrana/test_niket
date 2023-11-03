@@ -13,8 +13,8 @@ pipeline {
         }    
         stage('Build Image') {
             steps {
-                docker build .
-                       
-        }            
+                 docker build -t niket-image:v1.0 Dockerfile
+                   }            
+        }
     }
 }    // test
