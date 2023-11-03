@@ -8,7 +8,7 @@ pipeline {
         }    
         stage('GitClone') {
             steps {
-               git clone "https://github.com/niketrana/test_niket2.git"
+               sh 'git clone https://github.com/niketrana/test_niket2.git'
             }            
         }        
     }
