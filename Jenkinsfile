@@ -1,39 +1,48 @@
+env {
+    //DOCKER_REGISTRY = 'your-docker-registry'
+    IMAGE_NAME = 'niket-image'
+    BRANCH_NAME = 'main'
+}
+
 pipeline {
     agent any
 
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                // Clean workspace before checking out code
-                deleteDir()
-
-                // Checkout your code from Git
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/niketrana/test_niket.git']]])
+                // Check out the code from the Git repository
+                checkout scm
             }
         }
 
         stage('Build Docker Image') {
             steps {
+                // Build a Docker image from the Dockerfile in the repository
                 script {
-                    // Define the Dockerfile path (if it's not in the root of your repo)
-                    def dockerfilePath = './Dockerfile'
-
-                    // Build the Docker image
-                    def dockerImage = docker.build('niket-image:v1.0', "-f ${dockerfilePath} .")
-
-                    // Push the Docker image to a registry if needed
-                    // dockerImage.push()
+                    def customImage = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}")
                 }
             }
         }
-     }
+
+        stage('Push Docker Image') {
+            steps {
+                // Push the Docker image to the specified container registry
+                script {
+                    customImage.push()
+                }
+            }
+        }
+    }
+
     post {
         success {
-            echo 'Docker image build succeeded!'
+            // This block is executed when the pipeline is successful
+            echo "Pipeline successful for branch ${env.BRANCH_NAME}"
         }
 
         failure {
-            echo 'Docker image build failed!'
+            // This block is executed when the pipeline fails
+            mail to: 'youremail@example.com', subject: "Pipeline Failed: ${currentBuild.fullDisplayName}", body: "The pipeline has failed for branch ${env.BRANCH_NAME}."
         }
-    }    
-}    
+    }
+}
