@@ -1,12 +1,12 @@
-
-
 pipeline {
     agent any
-        env {
-    //DOCKER_REGISTRY = 'your-docker-registry'
-    IMAGE_NAME = 'niket-image'
-    BRANCH_NAME = 'main'
-              }
+
+    environment {
+//        DOCKER_REGISTRY = 'your-docker-registry'
+        IMAGE_NAME = 'your-image-name'
+        IMAGE_TAG = 'latest'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -17,11 +17,11 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                // Build a Docker image from the Dockerfile in the repository
                 script {
-                    docker.image("${env.IMAGE_NAME}:${env.BRANCH_NAME}").build()
+                    // Build a Docker image from the Dockerfile in the repository
+                    sh "docker build -t {IMAGE_NAME}:${IMAGE_TAG} ."
                 }
             }
         }
     }
-}
+    }
