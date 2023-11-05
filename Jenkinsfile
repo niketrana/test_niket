@@ -19,30 +19,9 @@ pipeline {
             steps {
                 // Build a Docker image from the Dockerfile in the repository
                 script {
-                    def customImage = docker.build("${env.IMAGE_NAME}:${env.BRANCH_NAME}")
+                    docker.image("${env.IMAGE_NAME}:${env.BRANCH_NAME}").build()
                 }
             }
-        }
-
-        stage('Push Docker Image') {
-            steps {
-                // Push the Docker image to the specified container registry
-                script {
-                    customImage.push()
-                }
-            }
-        }
-    }
-
-    post {
-        success {
-            // This block is executed when the pipeline is successful
-            echo "Pipeline successful for branch ${env.BRANCH_NAME}"
-        }
-
-        failure {
-            // This block is executed when the pipeline fails
-            mail to: 'youremail@example.com', subject: "Pipeline Failed: ${currentBuild.fullDisplayName}", body: "The pipeline has failed for branch ${env.BRANCH_NAME}."
         }
     }
 }
