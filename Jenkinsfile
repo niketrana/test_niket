@@ -1,12 +1,12 @@
-env {
-    //DOCKER_REGISTRY = 'your-docker-registry'
-    IMAGE_NAME = 'niket-image'
-    BRANCH_NAME = 'main'
-}
+
 
 pipeline {
     agent any
-
+        env {
+    //DOCKER_REGISTRY = 'your-docker-registry'
+    IMAGE_NAME = 'niket-image'
+    BRANCH_NAME = 'main'
+              }
     stages {
         stage('Checkout') {
             steps {
