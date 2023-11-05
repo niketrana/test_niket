@@ -4,7 +4,7 @@ pipeline {
     environment {
         // DOCKER_REGISTRY = 'your-docker-registry'
         IMAGE_NAME = 'niket-image'
-        IMAGE_TAG = 'v:1.0'
+        IMAGE_TAG = 'v1.0'
     }
 
     stages {
@@ -18,8 +18,11 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build a Docker image from the Dockerfile in the repository
-                    sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                    // Define the Docker image
+                    def dockerImage = docker.build("${env.IMAGE_NAME}:${env.IMAGE_TAG}")
+
+                    // Build the Docker image from the Dockerfile in the repository
+                    dockerImage.build()
                 }
             }
         }
