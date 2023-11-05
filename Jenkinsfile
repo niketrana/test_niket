@@ -3,8 +3,8 @@ pipeline {
 
     environment {
 //        DOCKER_REGISTRY = 'your-docker-registry'
-        IMAGE_NAME = 'your-image-name'
-        IMAGE_TAG = 'latest'
+        IMAGE_NAME = 'niket-image'
+        IMAGE_TAG = 'v:1.0'
     }
 
     stages {
