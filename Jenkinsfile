@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('hw') {
+        stage('hello-world') {
             steps {
-               echo "hw"
+               echo "Hello World !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1"
             }            
         }    
         stage('GitClone') {
