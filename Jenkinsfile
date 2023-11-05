@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('hello-world') {
             steps {
-               echo "Hello World This shouldn't get printed"
+               echo "Hello World !!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
             }            
         }    
         stage('GitClone') {
