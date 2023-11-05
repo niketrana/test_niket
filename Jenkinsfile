@@ -27,12 +27,6 @@ pipeline {
             }
         }
 
-        stage('Additional Steps') {
-            steps {
-                // You can add more build or deployment steps here
-            }
-        }
-    }
 
     post {
         success {
