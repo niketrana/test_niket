@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                deleteDir()			
                 // Check out the code from the Git repository
                 checkout scm
             }
